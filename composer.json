@@ -1,0 +1,27 @@
+{
+    "name": "liip/data-aggregator-bundle",
+    "description": "The data aggregator cumulates information provided by a loader and routes them to a persistance layer",
+    "license": "MIT",
+    "minimum-stability": "dev",
+
+    "authors": [
+        {
+            "name": "Bastian Feder",
+            "email": "bastian.feder@liip.ch",
+            "role": "maintainer"
+        }
+    ],
+
+    "require": {
+        "beberlei/assert": "dev-master",
+        "liip/dataaggregator": "dev-master"
+    },
+
+    "require-dev": {
+        "lapistano/proxy-object": "dev-master"
+    },
+
+    "autoload": {
+        "psr-0": { "MigrosApi\\DataAggregatorBundle": "." }
+    }
+}

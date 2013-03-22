@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity repository-class="netMigrosIntranet\DataAggregatorBundle\Entity\EntityBossRepository"
+            name="netMigrosIntranet\DataAggregatorBundle\Entity\EntityBoss">
+
+        <indexes>
+            <index name="bossId_idx" columns="boss_id"/>
+        </indexes>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="boss_id" type="string" column="boss_id" length="12" unique="true"/>
+        <field name="stufe" type="string" column="stufe" length="255"/>
+        <field name="bw" type="string" column="bw" length="2"/>
+        <field name="bb" type="string" column="bb" length="2"/>
+        <field name="vs" type="string" column="vs" length="2"/>
+        <field name="th" type="string" column="th" length="2"/>
+        <field name="fa" type="string" column="fa" length="2"/>
+        <field name="title_de" type="string" column="title_de" length="255"/>
+        <field name="title_fr" type="string" column="title_fr" length="255"/>
+        <field name="title_it" type="string" column="title_it" length="255"/>
+        <field name="title_en" type="string" column="title_en" length="255"/>
+        <field name="status" type="integer" column="status"/>
+        <field name="active_from_date" type="datetime" column="active_from_date" nullable="true"/>
+        <field name="responsible" type="string" column="responsible" length="255" nullable="true"/>
+        <field name="category" type="string" column="category" length="255" nullable="true"/>
+        <field name="post_status" type="integer" column="post_status" nullable="true"/>
+        <field name="post_active_from_date" type="datetime" column="post_active_from_date" nullable="true"/>
+        <field name="rpa" type="string" column="rpa" length="4" nullable="true"/>
+    </entity>
+</doctrine-mapping>
