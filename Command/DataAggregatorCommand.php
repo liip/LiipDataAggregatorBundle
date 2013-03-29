@@ -1,13 +1,13 @@
 <?php
-namespace MigrosApi\DataAggregatorBundle\Command;
+namespace Liip\DataAggregatorBundle\Command;
 
 use Assert\Assertion;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManager;
-use MigrosApi\DataAggregatorBundle\DataAggregator;
-use MigrosApi\DataAggregatorBundle\Loaders\LoaderBoss;
-use MigrosApi\DataAggregatorBundle\Loaders\Entities\LoaderEntityBoss;
-use MigrosApi\DataAggregatorBundle\Persistors\PersistorBoss;
+use Liip\DataAggregatorBundle\DataAggregator;
+use Liip\DataAggregatorBundle\Loaders\LoaderBoss;
+use Liip\DataAggregatorBundle\Loaders\Entities\LoaderEntityBoss;
+use Liip\DataAggregatorBundle\Persistors\PersistorBoss;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

@@ -1,9 +1,9 @@
 <?php
-namespace MigrosApi\DataAggregatorBundle\DataFixtures\ORM;
+namespace Liip\DataAggregatorBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\FixtureInterface;
-use MigrosApi\DataAggregatorBundle\Entity\EntityBoss;
+use Liip\DataAggregatorBundle\Entity\EntityBoss;
 
 class LoadBossData implements FixtureInterface
 {

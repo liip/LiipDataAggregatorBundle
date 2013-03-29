@@ -45,7 +45,7 @@ class DataAggregatorExtension extends Extension
      * @param array                                                   $config
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      *
-     * @return \MigrosApi\DataAggregatorBundle\DependencyInjection\DataAggregatorConfiguration
+     * @return \Liip\DataAggregatorBundle\DependencyInjection\DataAggregatorConfiguration
      */
     public function getConfiguration(array $config, ContainerBuilder $container)
     {
