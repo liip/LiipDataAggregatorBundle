@@ -2,8 +2,8 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity repository-class="netMigrosIntranet\DataAggregatorBundle\Entity\EntityBossRepository"
-            name="netMigrosIntranet\DataAggregatorBundle\Entity\EntityBoss">
+    <entity repository-class="Liip\DataAggregatorBundle\Entity\EntityBossRepository"
+            name="Liip\DataAggregatorBundle\Entity\EntityBoss">
 
         <indexes>
             <index name="bossId_idx" columns="boss_id"/>
