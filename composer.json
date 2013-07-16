@@ -1,5 +1,6 @@
 {
     "name": "liip/data-aggregator-bundle",
+    "type": "symfony-bundle",
     "description": "The data aggregator cumulates information provided by a loader and routes them to a persistance layer",
     "license": "MIT",
     "minimum-stability": "dev",
@@ -8,6 +9,16 @@
         {
             "name": "Liip AG",
             "homepage": "http://www.liip.ch/"
+        },
+        {
+            "name": "Bastian Feder",
+            "email": "bastian.feder@liip.ch",
+            "role": "maintainer"
+        },
+        {
+            "name": "Waldvogel",
+            "email": "waldvogel@liip.ch",
+            "role": "maintainer"
         }
     ],
 
@@ -17,7 +28,8 @@
         "liip/dataaggregator": "dev-master",
         "symfony/symfony": ">=2.0",
         "doctrine/orm": ">=2.3,<2.5-dev",
-        "doctrine/common": ">=2.2"
+        "doctrine/common": ">=2.2",
+        "doctrine/data-fixtures": ">=2.0"
     },
 
     "require-dev": {

@@ -1,10 +1,10 @@
 <?php
-namespace MigrosApi\DataAggregatorBundle\Command;
+namespace Liip\DataAggregatorBundle\Command;
 
 use Assert\Assertion;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManager;
-use Liip\DataAggregatorBundle\DataAggregator;
+use Liip\DataAggregator\DataAggregator;
 use Liip\DataAggregatorBundle\Loaders\Entities\LoaderEntityBoss;
 use Liip\DataAggregatorBundle\Loaders\LoaderBoss;
 use Liip\DataAggregatorBundle\Persistors\PersistorBoss;
@@ -40,6 +40,8 @@ class DataAggregatorCommand extends ContainerAwareCommand
     }
 
     /**
+     * Action controller to handle the console command.
+     *
      * @param InputInterface $input
      * @param OutputInterface $output
      */
@@ -67,6 +69,8 @@ class DataAggregatorCommand extends ContainerAwareCommand
     }
 
     /**
+     * Provides an instance of the Boss loader;
+     *
      * @param array $config
      * @param Assertion $assertion
      * @param Connection $dbal
@@ -84,6 +88,8 @@ class DataAggregatorCommand extends ContainerAwareCommand
     }
 
     /**
+     * Provides an instance of the EntityBoss loader.
+     *
      * @param $assertion
      * @param $config
      *
@@ -100,6 +106,8 @@ class DataAggregatorCommand extends ContainerAwareCommand
     }
 
     /**
+     * Provides an instance of the Boss persistor.
+     *
      * @param array $config
      * @param EntityManager $em
      *

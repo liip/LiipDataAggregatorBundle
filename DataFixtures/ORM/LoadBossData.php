@@ -1,9 +1,9 @@
 <?php
-namespace MigrosApi\DataAggregatorBundle\DataFixtures\ORM;
+namespace Liip\DataAggregatorBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use MigrosApi\DataAggregatorBundle\Entity\EntityBoss;
+use Liip\DataAggregatorBundle\Entity\EntityBoss;
 
 class LoadBossData implements FixtureInterface
 {
@@ -18,9 +18,12 @@ class LoadBossData implements FixtureInterface
     /**
      * Return the fixtures for the current model.
      *
+     * @param string $name
+     * @param ObjectManager $manager
+     *
      * @return array
      */
-    protected function loadAndProcessFixturesFromFile($name, $manager)
+    protected function loadAndProcessFixturesFromFile($name, ObjectManager $manager)
     {
         $path = $this->getDataPath() . '/' . $name;
         $handle = @fopen($path, "r");
