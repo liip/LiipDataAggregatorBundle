@@ -7,9 +7,7 @@ use Liip\DataAggregatorBundle\Loaders\Entities\LoaderEntityBoss;
 use Liip\DataAggregatorBundle\Persistors\PersistorBoss;
 use Liip\DataAggregatorBundle\Tests\DataAggregatorBundleTestCase;
 
-/**
- *
- */
+
 class PersistorBossTest extends DataAggregatorBundleTestCase
 {
     public function setUp()
@@ -47,11 +45,9 @@ class PersistorBossTest extends DataAggregatorBundleTestCase
         $configuration = $this->getPersistorBossConfigurationFixture();
         $entity = $this->getLoaderEntityBossFixture($configuration, $this->loaderEntityData);
 
-        $data = new ArrayCollection(
-            array(
-                $entity,
-                $entity,
-            )
+        $data = array(
+            $entity,
+            $entity,
         );
 
         $repository = $this->getEntityRepositoryMock(array('findOneBy'));
@@ -94,7 +90,7 @@ class PersistorBossTest extends DataAggregatorBundleTestCase
         $configuration = $this->getPersistorBossConfigurationFixture();
         $entity = $this->getLoaderEntityBossFixture($configuration, $this->loaderEntityData);
 
-        $data = new ArrayCollection(array($entity));
+        $data = array($entity);
 
         $em = $this->getEntityManagerMock(array('getRepository', 'flush'));
         $em
@@ -159,7 +155,7 @@ class PersistorBossTest extends DataAggregatorBundleTestCase
     }
 
     /**
-     * @expectedException \Liip\DataAggregatorBundle\Persistors\PersistorException
+     * @expectedException \Liip\DataAggregator\Persistors\PersistorException
      * @covers \Liip\DataAggregatorBundle\Persistors\PersistorBoss::persistDataInEntity
      */
     public function testPersistDataInEntityNoEntityData()

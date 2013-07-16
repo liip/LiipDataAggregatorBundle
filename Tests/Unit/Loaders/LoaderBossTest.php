@@ -17,7 +17,7 @@ class LoaderBossTest extends DataAggregatorBundleTestCase
      */
     public function testLoad()
     {
-        $expected = new ArrayCollection();
+        $expected = array();
 
         $dbServiceMock = $this->getDbServiceMock(array("fetchAll"));
         $dbServiceMock
@@ -39,7 +39,7 @@ class LoaderBossTest extends DataAggregatorBundleTestCase
      */
     public function testProcessWithoutData()
     {
-        $expected = new ArrayCollection();
+        $expected = array();
 
         $dbServiceMock = $this->getDbServiceMock();
 
@@ -59,7 +59,7 @@ class LoaderBossTest extends DataAggregatorBundleTestCase
      */
     public function testProcessWithDataAndEmptyItem()
     {
-        $expected = new ArrayCollection();
+        $expected = array();
 
         $dbServiceMock = $this->getDbServiceMock();
 
@@ -111,7 +111,7 @@ class LoaderBossTest extends DataAggregatorBundleTestCase
         $entity = new LoaderEntityBoss(new Assertion(), $this->getLoaderBossConfigurationFixture());
         $entity->init($item);
 
-        $expected = new ArrayCollection(array($entity));
+        $expected = array($entity);
 
         $loader = $this->getProxyBuilder("\\Liip\\DataAggregatorBundle\\Loaders\\LoaderBoss")
             ->setMethods(array("process"))

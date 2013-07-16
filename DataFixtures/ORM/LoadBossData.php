@@ -1,35 +1,24 @@
 <?php
 namespace MigrosApi\DataAggregatorBundle\DataFixtures\ORM;
 
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 use MigrosApi\DataAggregatorBundle\Entity\EntityBoss;
 
 class LoadBossData implements FixtureInterface
 {
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $this->loadAndProcessFixturesFromFile('bossstruktur.csv', $manager);
     }
 
-    protected function getDataPath()
-    {
-        return realpath(__DIR__ . "/../CSV/");
-    }
-
-    /**
-     * Removes single apostrophe characters from given string.
-     * @param $str
-     * @return mixed
-     */
-    protected function removeApostrophe($str)
-    {
-        return str_replace("'", "", $str);
-    }
     /**
      * Return the fixtures for the current model.
      *
-     * @return Array
+     * @return array
      */
     protected function loadAndProcessFixturesFromFile($name, $manager)
     {
@@ -67,10 +56,35 @@ class LoadBossData implements FixtureInterface
         $manager->flush();
     }
 
+    /**
+     *
+     * @return string
+     */
+    protected function getDataPath()
+    {
+        return realpath(__DIR__ . "/../CSV/");
+    }
+
+    /**
+     * Removes single apostrophe characters from given string.
+     *
+     * @param $str
+     *
+     * @return mixed
+     */
+    protected function removeApostrophe($str)
+    {
+        return str_replace("'", "", $str);
+    }
+
+    /**
+     * @param $data
+     *
+     * @return EntityBoss
+     */
     protected function getPersistorBossModel($data)
     {
-        $boss = new EntityBoss();
-        return $boss;
+        return new EntityBoss();
     }
 
 }

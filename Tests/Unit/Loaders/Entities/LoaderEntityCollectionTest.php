@@ -1,25 +1,24 @@
 <?php
 namespace Liip\DataAggregatorBundle\Loaders\Entities;
 
-use Liip\DataAggregatorBundle\Loaders\Entities\LoaderEntityCollection;
 use Liip\DataAggregatorBundle\Tests\DataAggregatorBundleTestCase;
 
 class LoaderEntityCollectionTest extends DataAggregatorBundleTestCase
 {
-
-    protected function getCollection() {
-        $collection = new LoaderEntityCollection();
-        $collection[] = 'tux';
-        $collection[] = 'beastie';
-        $collection['mascott'] = 'tux';
-        return $collection;
+    public static function isCollectionDataprovider()
+    {
+        return array(
+            'a valid collection » true'       => array(true, new LoaderEntityCollection()),
+            'not a collection at all » false' => array(false, 'not a collection at all'),
+        );
     }
 
     /**
      * @dataProvider isCollectionDataprovider
      * @covers \Liip\DataAggregatorBundle\Loaders\Entities\LoaderEntityCollection::isCollection
      */
-    public function testIsCollection($expected, $arg) {
+    public function testIsCollection($expected, $arg)
+    {
         $collection = new LoaderEntityCollection();
 
         $this->assertEquals($expected, $collection->isCollection($arg));
@@ -28,7 +27,8 @@ class LoaderEntityCollectionTest extends DataAggregatorBundleTestCase
     /**
      * @covers \Liip\DataAggregatorBundle\Loaders\Entities\LoaderEntityCollection::merge
      */
-    public function testMergeExpectingOnlyOneArgumentGiven() {
+    public function testMergeExpectingOnlyOneArgumentGiven()
+    {
         $collection = new LoaderEntityCollection();
         $this->assertSame($collection, $collection->merge($collection));
     }
@@ -37,7 +37,8 @@ class LoaderEntityCollectionTest extends DataAggregatorBundleTestCase
      * @expectedException \InvalidArgumentException
      * @covers \Liip\DataAggregatorBundle\Loaders\Entities\LoaderEntityCollection::merge
      */
-    public function testMergeExpectingInvalidArgumentExceptionBecauseInvalidArgumentsGiven() {
+    public function testMergeExpectingInvalidArgumentExceptionBecauseInvalidArgumentsGiven()
+    {
         $collection = new LoaderEntityCollection();
         $collection->merge(new LoaderEntityCollection(), 'not a collection at all');
     }
@@ -46,10 +47,12 @@ class LoaderEntityCollectionTest extends DataAggregatorBundleTestCase
      * @covers \Liip\DataAggregatorBundle\Loaders\Entities\LoaderEntityCollection::merge
      * @covers \Liip\DataAggregatorBundle\Loaders\Entities\LoaderEntityCollection::doMerge
      */
-    public function testMerge() {
+    public function testMerge()
+    {
         $c1 = new LoaderEntityCollection();
         $c1['mascott'] = 'tux';
         $c1[] = 'tux';
+
         $c2 = new LoaderEntityCollection();
         $c2['mascott'] = 'Beastie';
         $c2[] = 'tux';
@@ -65,7 +68,8 @@ class LoaderEntityCollectionTest extends DataAggregatorBundleTestCase
      * @covers \Liip\DataAggregatorBundle\Loaders\Entities\LoaderEntityCollection::merge
      * @covers \Liip\DataAggregatorBundle\Loaders\Entities\LoaderEntityCollection::doMerge
      */
-    public function testMergeMoreThanTwoCollections() {
+    public function testMergeMoreThanTwoCollections()
+    {
         $c1 = new LoaderEntityCollection();
         $c1['mascott'] = 'tux';
         $c1[] = 'tux';
@@ -83,11 +87,16 @@ class LoaderEntityCollectionTest extends DataAggregatorBundleTestCase
         $this->assertCount(5, $c);
     }
 
-    public static function isCollectionDataprovider() {
-        return array(
-            'a valid collection » true' => array(true, new LoaderEntityCollection()),
-            'not a collection at all » false' => array(false, 'not a collection at all'),
-        );
-    }
+    /**
+     * @return array
+     */
+    protected function getCollection()
+    {
+        $collection = new LoaderEntityCollection();
+        $collection[] = 'tux';
+        $collection[] = 'beastie';
+        $collection['mascott'] = 'tux';
 
+        return $collection;
+    }
 }
