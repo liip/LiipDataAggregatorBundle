@@ -6,15 +6,18 @@
 
     "authors": [
         {
-            "name": "Bastian Feder",
-            "email": "bastian.feder@liip.ch",
-            "role": "maintainer"
+            "name": "Liip AG",
+            "homepage": "http://www.liip.ch/"
         }
     ],
 
     "require": {
+        "php": ">=5.3.0",
         "beberlei/assert": "dev-master",
-        "liip/dataaggregator": "dev-master"
+        "liip/dataaggregator": "dev-master",
+        "symfony/symfony": ">=2.0",
+        "doctrine/orm": ">=2.3,<2.5-dev",
+        "doctrine/common": ">=2.2"
     },
 
     "require-dev": {
@@ -22,6 +25,8 @@
     },
 
     "autoload": {
-        "psr-0": { "MigrosApi\\DataAggregatorBundle": "." }
-    }
+        "psr-0": { "Liip\\DataAggregatorBundle": "" }
+    },
+
+    "target-dir": "Liip/DataAggregatorBundle"
 }
