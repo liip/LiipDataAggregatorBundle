@@ -13,9 +13,10 @@ class LoaderEntityCollection extends ArrayCollection
      * @throws \InvalidArgumentException
      * @return ArrayCollection
      */
-    public function merge(ArrayCollection $collection) {
+    public function merge(ArrayCollection $collection)
+    {
         $args = func_get_args();
-        $c = array_shift($args);
+        $mergedCollection = array_shift($args);
         $i = 0;
 
         foreach ($args as $arg) {
@@ -25,10 +26,23 @@ class LoaderEntityCollection extends ArrayCollection
                     LoaderEntityException::INVALID_COLLECTION_TYPE
                 );
             }
-            $c = $this->doMerge($c, $arg);
+            $mergedCollection = $this->doMerge($mergedCollection, $arg);
             ++$i;
         }
-        return $c;
+
+        return $mergedCollection;
+    }
+
+    /**
+     * Verifies if the given object is of type ArrayCollection
+     *
+     * @param object $collection
+     *
+     * @return object True, if it is of the expected type, else false.
+     */
+    public function isCollection($collection)
+    {
+        return $collection instanceof ArrayCollection;
     }
 
     /**
@@ -36,9 +50,11 @@ class LoaderEntityCollection extends ArrayCollection
      *
      * @param ArrayCollection $to
      * @param ArrayCollection $from
+     *
      * @return ArrayCollection
      */
-    protected function doMerge(ArrayCollection $to, ArrayCollection $from) {
+    protected function doMerge(ArrayCollection $to, ArrayCollection $from)
+    {
         foreach ($from as $key => $item) {
             if (is_numeric($key)) {
                 $to[] = $item;
@@ -46,16 +62,7 @@ class LoaderEntityCollection extends ArrayCollection
             }
             $to[$key] = $item;
         }
-        return $to;
-    }
 
-    /**
-     * Verifies if the given object is of type ArrayCollection
-     *
-     * @param object $collection
-     * @return boolean True, if it is of the expected type, else false.
-     */
-    public function isCollection($collection) {
-        return $collection instanceof ArrayCollection;
+        return $to;
     }
 }

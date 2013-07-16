@@ -1,7 +1,6 @@
 <?php
 namespace Liip\DataAggregatorBundle\Persistors;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\TransactionRequiredException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
@@ -44,9 +43,9 @@ class PersistorBoss implements PersistorInterface
     /**
      * Processes the given data.
      *
-     * @param \Doctrine\Common\Collections\ArrayCollection $data
+     * @param array $data
      */
-    public function persist(ArrayCollection $data)
+    public function persist(array $data)
     {
         try {
             foreach ($data as $item) {
@@ -95,7 +94,9 @@ class PersistorBoss implements PersistorInterface
      * Initiates the entity and triggers the storage process.
      *
      * @param \Liip\DataAggregatorBundle\Loaders\Entities\LoaderEntityInterface $entityData
-     * @param \stdClass                                                         $entity
+     * @param \Liip\DataAggregatorBundle\Entity\EntityBoss|\stdClass $entity
+     *
+     * @throws \Liip\DataAggregator\Persistors\PersistorException
      */
     protected function persistDataInEntity(LoaderEntityInterface $entityData, PersistorBossEntity $entity)
     {

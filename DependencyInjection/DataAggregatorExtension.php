@@ -10,7 +10,7 @@ class DataAggregatorExtension extends Extension
     /**
      * Loads the current configuration into the DIC parameter bag.
      *
-     * @param array                                                   $configs
+     * @param array $configs
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      */
     public function load(array $configs, ContainerBuilder $container)
@@ -30,19 +30,9 @@ class DataAggregatorExtension extends Extension
     }
 
     /**
-     * Provides the alias of the bundle to be used in the configuration as prefix.
-     *
-     * @return string
-     */
-    public function getAlias()
-    {
-        return 'data_aggregator';
-    }
-
-    /**
      * Point framework to non standard named configuration class.
      *
-     * @param array                                                   $config
+     * @param array $config
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      *
      * @return \MigrosApi\DataAggregatorBundle\DependencyInjection\DataAggregatorConfiguration
@@ -50,5 +40,14 @@ class DataAggregatorExtension extends Extension
     public function getConfiguration(array $config, ContainerBuilder $container)
     {
         return new DataAggregatorConfiguration();
+    }
+
+    /**
+     * Provides the alias of the bundle to be used in the configuration as prefix.
+     * @return string
+     */
+    public function getAlias()
+    {
+        return 'data_aggregator';
     }
 }

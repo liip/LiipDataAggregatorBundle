@@ -1,9 +1,10 @@
 <?php
 namespace Liip\DataAggregatorBundle\Loaders;
 
-use Assert\AssertionFailedException;
-use Doctrine\Common\Collections\ArrayCollection;
+use Assert\InvalidArgumentException;
+use Doctrine\DBAL\Connection;
 use Liip\DataAggregator\Loaders\LoaderInterface;
+use Liip\DataAggregatorBundle\Loaders\Entities\LoaderEntityInterface;
 
 class LoaderBoss implements LoaderInterface
 {
@@ -23,7 +24,7 @@ class LoaderBoss implements LoaderInterface
      * @param \Doctrine\DBAL\Connection $databaseConnection
      * @param \Liip\DataAggregatorBundle\Loaders\Entities\LoaderEntityInterface $entity
      */
-    public function __construct(\Doctrine\DBAL\Connection $databaseConnection, LoaderEntityInterface $entity)
+    public function __construct(Connection $databaseConnection, LoaderEntityInterface $entity)
     {
         $this->dbConnection = $databaseConnection;
         $this->loaderEntity = $entity;
@@ -32,7 +33,7 @@ class LoaderBoss implements LoaderInterface
     /**
      * Starts the data loading process.
      *
-     * @return \Doctrine\Common\Collections\ArrayCollection
+     * @return array
      */
     public function load()
     {
@@ -566,42 +567,40 @@ QUERY;
     }
 
     /**
-     * Backport to the DataAggregator.
-     *
-     * This backport shall enable the DataAggregator to decide if to stop
-     * over other registered loaders.
-     *
-     * @return boolean
-     */
-    public function stopPropagation()
-    {
-        return false;
-    }
-
-    /**
      * Converts data to an Object
      *
      * @param array $data
      *
-     * @return \Doctrine\Common\Collections\ArrayCollection
+     * @return array
      */
     protected function process(array $data)
     {
-        $processedData = new ArrayCollection();
+        $processedData = array();
 
         if (!empty($data)) {
             foreach ($data as $item) {
-                try  {
+                try {
                     $entity = clone $this->loaderEntity;
                     $processedData[] = $entity->init($item);
                     unset($entity);
 
-                } catch (AssertionFailedException $e) {
+                } catch (InvalidArgumentException $e) {
                     // ToDo: Log here
                 }
             }
         }
 
         return $processedData;
+    }
+
+    /**
+     * Backport to the DataAggregator.
+     * This backport shall enable the DataAggregator to decide if to stop
+     * over other registered loaders.
+     * @return boolean
+     */
+    public function stopPropagation()
+    {
+        return false;
     }
 }

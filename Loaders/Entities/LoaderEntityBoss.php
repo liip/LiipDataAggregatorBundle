@@ -2,7 +2,6 @@
 namespace Liip\DataAggregatorBundle\Loaders\Entities;
 
 use Assert\Assertion;
-use Assert\AssertionFailedException;
 
 class LoaderEntityBoss implements LoaderEntityInterface
 {
@@ -25,8 +24,8 @@ class LoaderEntityBoss implements LoaderEntityInterface
      */
     protected $hasProperties = false;
 
-
     /**
+     * @param \Assert\Assertion $assertion
      * @param array $config
      */
     public function __construct(Assertion $assertion, array $config)
@@ -37,6 +36,7 @@ class LoaderEntityBoss implements LoaderEntityInterface
 
     /**
      * Verifies that the config is not empty
+     *
      * @param array $config
      */
     public function setConfiguration(array $config)
@@ -49,6 +49,7 @@ class LoaderEntityBoss implements LoaderEntityInterface
      * Initializes the current class.
      *
      * @param array $data
+     *
      * @return $this
      */
     public function init(array $data)
@@ -72,18 +73,7 @@ class LoaderEntityBoss implements LoaderEntityInterface
     }
 
     /**
-     * Indicates if the current entity has members or not.
-     *
-     * @return bool
-     */
-    public function isEmpty()
-    {
-        return !$this->hasProperties;
-    }
-
-    /**
      * Sets an instance of this class to it's »uninitialized« state.
-     *
      * This will remove every property defined by the currently set configuration
      * but will preserve the configuration set by the constructor.
      */
@@ -94,5 +84,14 @@ class LoaderEntityBoss implements LoaderEntityInterface
         }
 
         $this->hasProperties = false;
+    }
+
+    /**
+     * Indicates if the current entity has members or not.
+     * @return bool
+     */
+    public function isEmpty()
+    {
+        return !$this->hasProperties;
     }
 }
