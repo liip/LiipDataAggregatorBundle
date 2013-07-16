@@ -1,6 +1,6 @@
 <?php
 
-if (!file_exists( __DIR__ . "/vendor/autoload.php")) {
+if (!file_exists( __DIR__ . "/../vendor/autoload.php")) {
     die(
         "\n[ERROR] You need to run composer before running the test suite.\n".
         "To do so run the following commands:\n".
@@ -9,6 +9,8 @@ if (!file_exists( __DIR__ . "/vendor/autoload.php")) {
     );
 }
 
-$loader = require_once( __DIR__ . '/vendor/autoload.php');
+$loader = require_once( __DIR__ . '/../vendor/autoload.php');
 
-$loader->add("Liip\\DataAggregatorBundle\\Tests", __DIR__ );
+$loader->addClassMap(array(
+    "Liip\\DataAggregatorBundle\\Tests\\DataAggregatorBundleTestCase" => __DIR__ . "/DataAggregatorBundleTestCase.php",
+));
