@@ -5,4 +5,4 @@ vendor
 .idea
 
 # Ignore testing artefacts
-Builds
+build
